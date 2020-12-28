@@ -10,30 +10,20 @@ class App extends Component {
         super();
         this.state = {
             isLoggedIn: false,
-            flightCodes: [],
+            squadronAdminStatus: [],
             squadronData: [],
         };
     }
 
     async componentDidMount() {
+        //refactored to 1x GET request
+        // INNER JOIN with 'airmen' table and 'flight' table
         const response = await fetch(
-            "https://us-central1-cc-dashboard-afb15.cloudfunctions.net/getFlightCodes"
+            "http://localhost:3001/squadron_admin_status"
         );
-        const newFlightCodes = await response.json();
-        this.setState({flightCodes: newFlightCodes});
+        const responseJSON = await response.json();
+        this.setState({squadronAdminStatus: responseJSON});
 
-        let output = [];
-        await Promise.all(
-            await this.state.flightCodes.flights.map(async (code) => {
-                const airmenResponse = await fetch(
-                    `https://us-central1-cc-dashboard-afb15.cloudfunctions.net/getAirmen/${code}`
-                );
-                const airmenData = await airmenResponse.json();
-                output.push({flightName: code, flightData: airmenData});
-            })
-        );
-
-        this.setState({squadronData: output});
     }
 
     handleLogin = (event) => {
@@ -62,7 +52,7 @@ class App extends Component {
                         <Route exact path="/Dashboard">
                             <Dashboard
                                 logoutButtonClick={this.handleLogout}
-                                flightCodes={this.state.flightCodes}
+                                flightCodes={this.state.squadronAdminStatus}
                                 squadronDataOrWhateverName={this.state.squadronData}
                             />
                         </Route>

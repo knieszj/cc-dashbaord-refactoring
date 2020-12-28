@@ -14,11 +14,9 @@ app.get('/squadron_admin_status', (req, res) => {
     // eslint-disable-next-line promise/catch-or-return
     knex(`airmen`)
         .innerJoin(`flights`, `flight_assigned_to`, `flight_id`)
+        .innerJoin('admin_categories','airmen_id','admin_category_airmen')
+        .select('airmen_id', 'first_name', 'last_name', 'adls_training','physical_fitness_test','medical_readiness','evaluations','updated_at','flight_id','flight_name')
         .then(data => res.status(200).json(data))
-
-    // res.send(`We're up and working now :) `)
-
-
 })
 
 

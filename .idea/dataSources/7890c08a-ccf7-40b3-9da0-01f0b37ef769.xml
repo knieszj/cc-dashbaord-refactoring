@@ -793,11 +793,12 @@ false Zulu
     <database id="3" parent="1" name="cc_dashboard_database">
       <ObjectId>16852</ObjectId>
       <Owner>postgres</Owner>
-      <IntrospectionStateNumber>716</IntrospectionStateNumber>
+      <IntrospectionStateNumber>732</IntrospectionStateNumber>
       <Relations>sequence|table|16853|16855|1
 sequence|table|16861|16863|1
 sequence|table|16869|16871|1
 sequence|table|16882|16884|1
+sequence|table|16923|16925|1
 </Relations>
     </database>
     <database id="4" parent="1" name="kniesz_books">
@@ -891,7 +892,7 @@ UC/10
 </Acl>
       <StateNumber>287</StateNumber>
       <Owner>postgres</Owner>
-      <IntrospectionStateNumber>717</IntrospectionStateNumber>
+      <IntrospectionStateNumber>733</IntrospectionStateNumber>
       <Current>1</Current>
     </schema>
     <extension id="23" parent="3" name="plpgsql">
@@ -991,51 +992,127 @@ UC/10
       <HandlerId>335</HandlerId>
       <Type>index</Type>
     </access-method>
-    <sequence id="35" parent="22" name="airmen_airmen_id_seq">
+    <sequence id="35" parent="22" name="admin_categories_admin_categories_id_seq">
+      <ObjectId>16923</ObjectId>
+      <Owner>postgres</Owner>
+      <StateNumber>727</StateNumber>
+      <DataType>integer|0s</DataType>
+    </sequence>
+    <sequence id="36" parent="22" name="airmen_airmen_id_seq">
       <ObjectId>16869</ObjectId>
       <Owner>postgres</Owner>
       <StateNumber>711</StateNumber>
       <DataType>integer|0s</DataType>
     </sequence>
-    <sequence id="36" parent="22" name="flights_flight_id_seq">
+    <sequence id="37" parent="22" name="flights_flight_id_seq">
       <ObjectId>16882</ObjectId>
       <Owner>postgres</Owner>
       <StateNumber>711</StateNumber>
       <DataType>integer|0s</DataType>
     </sequence>
-    <sequence id="37" parent="22" name="knex_migrations_id_seq">
+    <sequence id="38" parent="22" name="knex_migrations_id_seq">
       <ObjectId>16853</ObjectId>
       <Owner>postgres</Owner>
       <StateNumber>708</StateNumber>
       <DataType>integer|0s</DataType>
     </sequence>
-    <sequence id="38" parent="22" name="knex_migrations_lock_index_seq">
+    <sequence id="39" parent="22" name="knex_migrations_lock_index_seq">
       <ObjectId>16861</ObjectId>
       <Owner>postgres</Owner>
       <StateNumber>709</StateNumber>
       <DataType>integer|0s</DataType>
     </sequence>
-    <table id="39" parent="22" name="airmen">
+    <table id="40" parent="22" name="admin_categories">
+      <ObjectId>16925</ObjectId>
+      <Owner>postgres</Owner>
+      <StateNumber>727</StateNumber>
+    </table>
+    <table id="41" parent="22" name="airmen">
       <ObjectId>16871</ObjectId>
       <Owner>postgres</Owner>
       <StateNumber>715</StateNumber>
     </table>
-    <table id="40" parent="22" name="flights">
+    <table id="42" parent="22" name="flights">
       <ObjectId>16884</ObjectId>
       <Owner>postgres</Owner>
       <StateNumber>715</StateNumber>
     </table>
-    <table id="41" parent="22" name="knex_migrations">
+    <table id="43" parent="22" name="knex_migrations">
       <ObjectId>16855</ObjectId>
       <Owner>postgres</Owner>
       <StateNumber>708</StateNumber>
     </table>
-    <table id="42" parent="22" name="knex_migrations_lock">
+    <table id="44" parent="22" name="knex_migrations_lock">
       <ObjectId>16863</ObjectId>
       <Owner>postgres</Owner>
       <StateNumber>709</StateNumber>
     </table>
-    <column id="43" parent="39" name="airmen_id">
+    <column id="45" parent="40" name="admin_categories_id">
+      <Position>1</Position>
+      <DataType>integer|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>727</StateNumber>
+      <DefaultExpression>nextval(&apos;admin_categories_admin_categories_id_seq&apos;::regclass)</DefaultExpression>
+      <TypeId>23</TypeId>
+    </column>
+    <column id="46" parent="40" name="admin_category_airmen">
+      <Position>2</Position>
+      <DataType>integer|0s</DataType>
+      <StateNumber>727</StateNumber>
+      <TypeId>23</TypeId>
+    </column>
+    <column id="47" parent="40" name="adls_training">
+      <Position>3</Position>
+      <DataType>boolean|0s</DataType>
+      <StateNumber>727</StateNumber>
+      <TypeId>16</TypeId>
+    </column>
+    <column id="48" parent="40" name="physical_fitness_test">
+      <Position>4</Position>
+      <DataType>boolean|0s</DataType>
+      <StateNumber>727</StateNumber>
+      <TypeId>16</TypeId>
+    </column>
+    <column id="49" parent="40" name="medical_readiness">
+      <Position>5</Position>
+      <DataType>boolean|0s</DataType>
+      <StateNumber>727</StateNumber>
+      <TypeId>16</TypeId>
+    </column>
+    <column id="50" parent="40" name="evaluations">
+      <Position>6</Position>
+      <DataType>boolean|0s</DataType>
+      <StateNumber>727</StateNumber>
+      <TypeId>16</TypeId>
+    </column>
+    <index id="51" parent="40" name="admin_categories_pkey">
+      <ObjectId>16929</ObjectId>
+      <StateNumber>727</StateNumber>
+      <ColNames>admin_categories_id</ColNames>
+      <Unique>1</Unique>
+      <Primary>1</Primary>
+      <AccessMethodId>403</AccessMethodId>
+      <CollationIds>0</CollationIds>
+      <ClassIds>1978</ClassIds>
+    </index>
+    <key id="52" parent="40" name="admin_categories_pkey">
+      <ObjectId>16930</ObjectId>
+      <StateNumber>727</StateNumber>
+      <ColNames>admin_categories_id</ColNames>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>admin_categories_pkey</UnderlyingIndexName>
+    </key>
+    <foreign-key id="53" parent="40" name="admin_categories_admin_category_airmen_foreign">
+      <ObjectId>16931</ObjectId>
+      <StateNumber>727</StateNumber>
+      <ColNames>admin_category_airmen</ColNames>
+      <RefTableId>16871</RefTableId>
+      <RefColPositions>1</RefColPositions>
+      <RefTableName>airmen</RefTableName>
+      <RefKeyName>airmen_pkey</RefKeyName>
+      <RefColNames>airmen_id</RefColNames>
+    </foreign-key>
+    <column id="54" parent="41" name="airmen_id">
       <Position>1</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
@@ -1043,49 +1120,25 @@ UC/10
       <DefaultExpression>nextval(&apos;airmen_airmen_id_seq&apos;::regclass)</DefaultExpression>
       <TypeId>23</TypeId>
     </column>
-    <column id="44" parent="39" name="first_name">
+    <column id="55" parent="41" name="first_name">
       <Position>2</Position>
       <DataType>varchar(255)|0s</DataType>
       <StateNumber>711</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="45" parent="39" name="last_name">
+    <column id="56" parent="41" name="last_name">
       <Position>3</Position>
       <DataType>varchar(255)|0s</DataType>
       <StateNumber>711</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="46" parent="39" name="adls_training">
-      <Position>4</Position>
-      <DataType>boolean|0s</DataType>
-      <StateNumber>715</StateNumber>
-      <TypeId>16</TypeId>
-    </column>
-    <column id="47" parent="39" name="physical_fitness_test">
-      <Position>5</Position>
-      <DataType>boolean|0s</DataType>
-      <StateNumber>715</StateNumber>
-      <TypeId>16</TypeId>
-    </column>
-    <column id="48" parent="39" name="medical_readiness">
-      <Position>6</Position>
-      <DataType>boolean|0s</DataType>
-      <StateNumber>715</StateNumber>
-      <TypeId>16</TypeId>
-    </column>
-    <column id="49" parent="39" name="evaluations">
-      <Position>7</Position>
-      <DataType>boolean|0s</DataType>
-      <StateNumber>715</StateNumber>
-      <TypeId>16</TypeId>
-    </column>
-    <column id="50" parent="39" name="flight_assigned_to">
+    <column id="57" parent="41" name="flight_assigned_to">
       <Position>8</Position>
       <DataType>integer|0s</DataType>
       <StateNumber>715</StateNumber>
       <TypeId>23</TypeId>
     </column>
-    <column id="51" parent="39" name="created_at">
+    <column id="58" parent="41" name="created_at">
       <Position>9</Position>
       <DataType>timestamp with time zone|0s</DataType>
       <NotNull>1</NotNull>
@@ -1093,7 +1146,7 @@ UC/10
       <DefaultExpression>CURRENT_TIMESTAMP</DefaultExpression>
       <TypeId>1184</TypeId>
     </column>
-    <column id="52" parent="39" name="updated_at">
+    <column id="59" parent="41" name="updated_at">
       <Position>10</Position>
       <DataType>timestamp with time zone|0s</DataType>
       <NotNull>1</NotNull>
@@ -1101,7 +1154,7 @@ UC/10
       <DefaultExpression>CURRENT_TIMESTAMP</DefaultExpression>
       <TypeId>1184</TypeId>
     </column>
-    <index id="53" parent="39" name="airmen_pkey">
+    <index id="60" parent="41" name="airmen_pkey">
       <ObjectId>16880</ObjectId>
       <StateNumber>715</StateNumber>
       <ColNames>airmen_id</ColNames>
@@ -1111,14 +1164,14 @@ UC/10
       <CollationIds>0</CollationIds>
       <ClassIds>1978</ClassIds>
     </index>
-    <key id="54" parent="39" name="airmen_pkey">
+    <key id="61" parent="41" name="airmen_pkey">
       <ObjectId>16881</ObjectId>
       <StateNumber>711</StateNumber>
       <ColNames>airmen_id</ColNames>
       <Primary>1</Primary>
       <UnderlyingIndexName>airmen_pkey</UnderlyingIndexName>
     </key>
-    <foreign-key id="55" parent="39" name="airmen_flight_assigned_to_foreign">
+    <foreign-key id="62" parent="41" name="airmen_flight_assigned_to_foreign">
       <ObjectId>16918</ObjectId>
       <StateNumber>715</StateNumber>
       <ColNames>flight_assigned_to</ColNames>
@@ -1128,7 +1181,7 @@ UC/10
       <RefKeyName>flights_pkey</RefKeyName>
       <RefColNames>flight_id</RefColNames>
     </foreign-key>
-    <column id="56" parent="40" name="flight_id">
+    <column id="63" parent="42" name="flight_id">
       <Position>1</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
@@ -1136,19 +1189,19 @@ UC/10
       <DefaultExpression>nextval(&apos;flights_flight_id_seq&apos;::regclass)</DefaultExpression>
       <TypeId>23</TypeId>
     </column>
-    <column id="57" parent="40" name="flight_name">
+    <column id="64" parent="42" name="flight_name">
       <Position>2</Position>
       <DataType>varchar(255)|0s</DataType>
       <StateNumber>711</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="58" parent="40" name="squadron_assigned_to">
+    <column id="65" parent="42" name="squadron_assigned_to">
       <Position>3</Position>
       <DataType>integer|0s</DataType>
       <StateNumber>711</StateNumber>
       <TypeId>23</TypeId>
     </column>
-    <index id="59" parent="40" name="flights_pkey">
+    <index id="66" parent="42" name="flights_pkey">
       <ObjectId>16888</ObjectId>
       <StateNumber>711</StateNumber>
       <ColNames>flight_id</ColNames>
@@ -1158,14 +1211,14 @@ UC/10
       <CollationIds>0</CollationIds>
       <ClassIds>1978</ClassIds>
     </index>
-    <key id="60" parent="40" name="flights_pkey">
+    <key id="67" parent="42" name="flights_pkey">
       <ObjectId>16889</ObjectId>
       <StateNumber>711</StateNumber>
       <ColNames>flight_id</ColNames>
       <Primary>1</Primary>
       <UnderlyingIndexName>flights_pkey</UnderlyingIndexName>
     </key>
-    <column id="61" parent="41" name="id">
+    <column id="68" parent="43" name="id">
       <Position>1</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
@@ -1173,25 +1226,25 @@ UC/10
       <DefaultExpression>nextval(&apos;knex_migrations_id_seq&apos;::regclass)</DefaultExpression>
       <TypeId>23</TypeId>
     </column>
-    <column id="62" parent="41" name="name">
+    <column id="69" parent="43" name="name">
       <Position>2</Position>
       <DataType>varchar(255)|0s</DataType>
       <StateNumber>708</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="63" parent="41" name="batch">
+    <column id="70" parent="43" name="batch">
       <Position>3</Position>
       <DataType>integer|0s</DataType>
       <StateNumber>708</StateNumber>
       <TypeId>23</TypeId>
     </column>
-    <column id="64" parent="41" name="migration_time">
+    <column id="71" parent="43" name="migration_time">
       <Position>4</Position>
       <DataType>timestamp with time zone|0s</DataType>
       <StateNumber>708</StateNumber>
       <TypeId>1184</TypeId>
     </column>
-    <index id="65" parent="41" name="knex_migrations_pkey">
+    <index id="72" parent="43" name="knex_migrations_pkey">
       <ObjectId>16859</ObjectId>
       <StateNumber>708</StateNumber>
       <ColNames>id</ColNames>
@@ -1201,14 +1254,14 @@ UC/10
       <CollationIds>0</CollationIds>
       <ClassIds>1978</ClassIds>
     </index>
-    <key id="66" parent="41" name="knex_migrations_pkey">
+    <key id="73" parent="43" name="knex_migrations_pkey">
       <ObjectId>16860</ObjectId>
       <StateNumber>708</StateNumber>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
       <UnderlyingIndexName>knex_migrations_pkey</UnderlyingIndexName>
     </key>
-    <column id="67" parent="42" name="index">
+    <column id="74" parent="44" name="index">
       <Position>1</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
@@ -1216,13 +1269,13 @@ UC/10
       <DefaultExpression>nextval(&apos;knex_migrations_lock_index_seq&apos;::regclass)</DefaultExpression>
       <TypeId>23</TypeId>
     </column>
-    <column id="68" parent="42" name="is_locked">
+    <column id="75" parent="44" name="is_locked">
       <Position>2</Position>
       <DataType>integer|0s</DataType>
       <StateNumber>709</StateNumber>
       <TypeId>23</TypeId>
     </column>
-    <index id="69" parent="42" name="knex_migrations_lock_pkey">
+    <index id="76" parent="44" name="knex_migrations_lock_pkey">
       <ObjectId>16867</ObjectId>
       <StateNumber>709</StateNumber>
       <ColNames>index</ColNames>
@@ -1232,7 +1285,7 @@ UC/10
       <CollationIds>0</CollationIds>
       <ClassIds>1978</ClassIds>
     </index>
-    <key id="70" parent="42" name="knex_migrations_lock_pkey">
+    <key id="77" parent="44" name="knex_migrations_lock_pkey">
       <ObjectId>16868</ObjectId>
       <StateNumber>709</StateNumber>
       <ColNames>index</ColNames>
