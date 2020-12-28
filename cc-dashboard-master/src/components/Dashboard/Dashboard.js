@@ -3,13 +3,19 @@ import {Col, Container, Row} from "react-bootstrap";
 import {BrowserRouter as Router, Link} from "react-router-dom";
 import CategoryCard from "./Category-Card/CategoryCard";
 import "./Dashboard.css";
-import AdminCard from "./Category-Card/AdminCard";
 
-const Dashboard = ({ logoutButtonClick, flightCodes, squadronDataOrWhateverName }) => {
+const Dashboard = ({ logoutButtonClick, sqdAdminStatus }) => {
     // Refactored out 'flight codes' and 'squadronDataOrWhateverName' because only 1 GET request is made due to database doing INNER JOIN to combine data
 
-    const byCategory = '';
 
+    const unfilteredAdminCategories = Object.keys(sqdAdminStatus[0]);
+    //grabs the keys of everything pass in the intiial GET request for squadron admin information/status
+    const filteredAdminCategories = unfilteredAdminCategories.filter(element => element !== 'airmen_id' && element !== 'first_name' && element !== 'last_name' && element !== 'updated_at' && element !== 'flight_id' && element !== 'flight_name'   ? element : null)
+    //filters out everything that has to do with flights or specific airmen which leaves behind only the training categories #FTW
+
+    const mapAdminCategories = filteredAdminCategories.map(cat => <CategoryCard category={cat} sqdAdminInfo={sqdAdminStatus}/>)
+
+    console.log(`filtered admin categories`, filteredAdminCategories)
     return (
         // Removed the hard coding of flights
         <div className="dashboard-overview">
@@ -19,39 +25,7 @@ const Dashboard = ({ logoutButtonClick, flightCodes, squadronDataOrWhateverName 
                     <Router>
                         <Row>
                             <Col>
-                                <CategoryCard
-                                    category="Fitness"
-                                    flights={flightCodes}
-                                    squadronDataOrAnotherName={squadronDataOrWhateverName}
-                                />
-                            </Col>
-                            <Col>
-                                <CategoryCard
-                                    category="ADLS"
-                                    flights={flightCodes}
-                                    squadronDataOrAnotherName={squadronDataOrWhateverName}
-                                />
-                            </Col>
-                            <Col>
-                                <CategoryCard
-                                    category="Evaluation"
-                                    flights={flightCodes}
-                                    squadronDataOrAnotherName={squadronDataOrWhateverName}
-                                />
-                            </Col>
-                            <Col>
-                                <CategoryCard
-                                    category="Medical"
-                                    flights={flightCodes}
-                                    squadronDataOrAnotherName={squadronDataOrWhateverName}
-                                />
-                            </Col>
-                            <Col>
-                                <AdminCard
-                                    category="Admin"
-                                    options={["Add", "Remove", "Update"]}
-                                    squadronDataOrAnotherName={squadronDataOrWhateverName}
-                                />
+                                {mapAdminCategories}
                             </Col>
                         </Row>
                         <Link to="/">

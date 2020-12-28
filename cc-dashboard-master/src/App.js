@@ -11,8 +11,12 @@ class App extends Component {
         this.state = {
             isLoggedIn: false,
             squadronAdminStatus: [],
-            squadronData: [],
+            squadronAdminCategories: [
+                ''
+            ],
         };
+        this.handleLogin = this.handleLogin.bind(this);
+        this.handleLogout = this.handleLogout.bind(this);
     }
 
     async componentDidMount() {
@@ -22,8 +26,13 @@ class App extends Component {
             "http://localhost:3001/squadron_admin_status"
         );
         const responseJSON = await response.json();
-        this.setState({squadronAdminStatus: responseJSON});
+        this.setState({squadronAdminStatus: responseJSON}, ()=> console.log('squadron admin status: ', this.state.squadronAdminStatus));
 
+        // const responseOne = await fetch(
+        //     "http://localhost:3001/squadron_admin_categories"
+        // );
+        // const responseOneJSON = await responseOne.json();
+        // this.setState({squadronAdminCategories: responseOneJSON}, ()=>console.log('squadron admin categories: ',this.state.squadronAdminCategories))
     }
 
     handleLogin = (event) => {
@@ -40,7 +49,7 @@ class App extends Component {
                     <Switch>
                         <Route exact path="/">
                             <LoginScreen loginButtonClick={this.handleLogin}/>
-                            <Link exact to="/Dashboard">
+                            <Link to="/Dashboard">
                                 <button
                                     onClick={(event) => this.handleLogin(event)}
                                     className="login-button"
@@ -49,11 +58,10 @@ class App extends Component {
                                 </button>
                             </Link>
                         </Route>
-                        <Route exact path="/Dashboard">
+                        <Route path="/Dashboard">
                             <Dashboard
                                 logoutButtonClick={this.handleLogout}
-                                flightCodes={this.state.squadronAdminStatus}
-                                squadronDataOrWhateverName={this.state.squadronData}
+                                sqdAdminStatus={this.state.squadronAdminStatus}
                             />
                         </Route>
 

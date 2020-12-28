@@ -19,6 +19,14 @@ app.get('/squadron_admin_status', (req, res) => {
         .then(data => res.status(200).json(data))
 })
 
+app.get('/squadron_admin_categories',(req, res) => {
+    // eslint-disable-next-line promise/catch-or-return
+    knex(`admin_categories`)
+        .select(`*`)
+        .from('columns')
+        .then(data => res.status(200).json(data))
+})
+
 
 
 
