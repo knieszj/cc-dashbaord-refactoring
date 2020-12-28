@@ -10,7 +10,16 @@ const knex = require('knex')(require('./knexfile')[process.env.NODE_ENV]);
 app.use(bodyParser.json())
 app.use(cors());
 
+app.get('/squadron_admin_status', (req, res) => {
+    // eslint-disable-next-line promise/catch-or-return
+    knex(`airmen`)
+        .innerJoin(`flights`, `flight_assigned_to`, `flight_id`)
+        .then(data => res.status(200).json(data))
 
+    // res.send(`We're up and working now :) `)
+
+
+})
 
 
 

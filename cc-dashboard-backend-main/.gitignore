@@ -1,4 +1,4 @@
-.env
+cc-dashboard-backend/.env
 
 # Logs
 logs
@@ -65,4 +65,4 @@ node_modules/
 .yarn-integrity
 
 # dotenv environment variables file
-.env
+cc-dashboard-backend/.env
