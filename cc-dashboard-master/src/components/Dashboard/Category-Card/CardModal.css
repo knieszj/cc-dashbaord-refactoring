@@ -1,0 +1,77 @@
+td:nth-child(1) {
+  width:10%;
+}
+
+.modal-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 1rem 1rem;
+  border-bottom: 1px solid #dee2e6;
+  border-top-left-radius: calc(.3rem - 1px);
+  border-top-right-radius: calc(.3rem - 1px);
+}
+
+.table {
+  width: 100%;
+  margin-bottom: 1rem;
+  display: table;
+  border-collapse: separate;
+  box-sizing: border-box;
+
+  text-indent: initial;
+  color: whitesmoke !important;
+
+  border-spacing: 2px;
+  background-color: none;
+  overflow: auto;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+
+
+
+*, ::after, ::before {
+  box-sizing: border-box;
+}
+
+.modal-dialog>.modal-content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  pointer-events: auto;
+  background-color: #131313;
+  background-clip: padding-box;
+  border: 1px solid rgba(0,0,0,.2);
+  border-radius: .3rem;
+  outline: 0;
+}
+
+.modal-footer>.btn-primary{
+  color: whitesmoke;
+  background-color: #2368a2;
+  border: none;
+}
+
+
+.modal-body, #displayed-card>h1, h3 {
+  color: whitesmoke;
+}
+
+/* 
+ * modifies text colour based on status 
+ * overrides 'color' attribute in '.table'
+ */
+ .overdue {
+  color: #ed1c24;
+}
+.current {
+  color: #39b54a;
+}
+.not-current {
+  color: #fff200;
+}

@@ -1,0 +1,12 @@
+.header-text {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    font-size: 4.25em;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.login-screen-img{
+    border-radius: 5%;
+}
