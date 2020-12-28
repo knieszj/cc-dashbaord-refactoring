@@ -11,9 +11,7 @@ class App extends Component {
         this.state = {
             isLoggedIn: false,
             squadronAdminStatus: [],
-            squadronAdminCategories: [
-                ''
-            ],
+
         };
         this.handleLogin = this.handleLogin.bind(this);
         this.handleLogout = this.handleLogout.bind(this);
@@ -22,17 +20,9 @@ class App extends Component {
     async componentDidMount() {
         //refactored to 1x GET request
         // INNER JOIN with 'airmen' table and 'flight' table
-        const response = await fetch(
-            "http://localhost:3001/squadron_admin_status"
-        );
+        const response = await fetch("http://localhost:3001/squadron_admin_status");
         const responseJSON = await response.json();
-        this.setState({squadronAdminStatus: responseJSON}, ()=> console.log('squadron admin status: ', this.state.squadronAdminStatus));
-
-        // const responseOne = await fetch(
-        //     "http://localhost:3001/squadron_admin_categories"
-        // );
-        // const responseOneJSON = await responseOne.json();
-        // this.setState({squadronAdminCategories: responseOneJSON}, ()=>console.log('squadron admin categories: ',this.state.squadronAdminCategories))
+        this.setState({squadronAdminStatus: responseJSON}, () => console.log('squadron admin status: ', this.state.squadronAdminStatus));
     }
 
     handleLogin = (event) => {

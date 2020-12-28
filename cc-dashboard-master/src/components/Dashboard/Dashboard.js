@@ -9,13 +9,12 @@ const Dashboard = ({ logoutButtonClick, sqdAdminStatus }) => {
 
 
     const unfilteredAdminCategories = Object.keys(sqdAdminStatus[0]);
-    //grabs the keys of everything pass in the intiial GET request for squadron admin information/status
+    //grabs the keys of everything pass in the intial GET request for squadron admin information/status
     const filteredAdminCategories = unfilteredAdminCategories.filter(element => element !== 'airmen_id' && element !== 'first_name' && element !== 'last_name' && element !== 'updated_at' && element !== 'flight_id' && element !== 'flight_name'   ? element : null)
     //filters out everything that has to do with flights or specific airmen which leaves behind only the training categories #FTW
 
     const mapAdminCategories = filteredAdminCategories.map(cat => <CategoryCard category={cat} sqdAdminInfo={sqdAdminStatus}/>)
 
-    console.log(`filtered admin categories`, filteredAdminCategories)
     return (
         // Removed the hard coding of flights
         <div className="dashboard-overview">
@@ -29,7 +28,6 @@ const Dashboard = ({ logoutButtonClick, sqdAdminStatus }) => {
                             </Col>
                         </Row>
                         <Link to="/">
-                            {" "}
                             <button
                                 onClick={(event) => logoutButtonClick(event)}
                                 className="logout-button"
